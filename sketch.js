@@ -1,3 +1,33 @@
+var num = 100;
+console.log(num)
+
+
+var string = "this is a string";
+console.log(string);
+
+var bool = true;
+console.log(bool);
+
+var object;
+console.log(object);
+
+object = null;
+console.log(object)
+
+
+var arr1 = [1,2,3,4,5]
+console.log(arr1)
+
+var arr2 = [[1,2],[3,4],[5,6]]
+console.log(arr2)
+
+console.log(arr2[0])
+console.log(arr2[1])
+
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +37,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var gameState="onSling"
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +99,20 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState!== "launched"){
+    
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState="launched"
 }
 
 function keyPressed(){
-    if(keyCode === 32){
-        slingshot.attach(bird.body);
-    }
+  //  if(keyCode === 32){
+       // slingshot.attach(bird.body);
+  //  }
 }
